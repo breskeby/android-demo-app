@@ -5,14 +5,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity"
+    android:weightSum="1">
 
     <ScrollView android:id="@+id/textAreaScroller"
         android:layout_width="fill_parent"
-        android:layout_height="300px"
+        android:layout_height="fill_parent"
         android:layout_x="0px"
         android:layout_y="25px"
-        android:scrollbars="vertical">
+        android:scrollbars="vertical"
+        android:layout_weight="0.88">
 
     <TextView
         android:id="@+id/text_view"

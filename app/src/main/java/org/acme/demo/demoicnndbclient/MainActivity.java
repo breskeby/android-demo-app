@@ -1,7 +1,5 @@
 package org.acme.demo.demoicnndbclient;
 
-import java.util.Timer;
-
 import org.springframework.web.client.RestTemplate;
 
 import android.R.color;

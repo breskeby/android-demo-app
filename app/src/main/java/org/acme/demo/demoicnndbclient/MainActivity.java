@@ -1,7 +1,6 @@
 package org.acme.demo.demoicnndbclient;
 
 import java.util.Timer;
-import java.util.TimerTask;
 
 import org.springframework.web.client.RestTemplate;
 
@@ -22,40 +21,27 @@ public class MainActivity extends Activity {
 
     private Button jokeButton;
     private TextView jokeView;
-    private boolean go;
-    private Timer t;
 
     // "true" ctor arg --> add default message converters
     private RestTemplate template = new RestTemplate(true);
-
-    private static final String URL =
-            "http://api.icndb.com/jokes/random";
-//            "http://api.icndb.com/jokes/random?limitTo=[nerdy]";
+    private String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        url = getString(R.string.URL);
 
         jokeView = (TextView) findViewById(R.id.text_view);
         jokeButton = (Button) findViewById(R.id.icndb_button);
         jokeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //go = !go;
-                //if (go) {
-                    //t = new Timer();
-//                    t.scheduleAtFixedRate(new TimerTask() {
-//                        public void run() {
-                            new JokeTask().execute();
-//                        }
-//                    }, 0, 10 * 1000);  // new joke every 10 sec
-//                } else {
-//                    if (t != null) t.cancel();
-                    jokeButton.setTextColor(getResources().getColor(color.holo_red_dark));
-//                }
+                new JokeTask().execute();
+                jokeButton.setTextColor(getResources().getColor(color.holo_red_dark));
             }
         });
+
+        setContentView(R.layout.activity_main);
     }
 
     @Override
@@ -68,7 +54,7 @@ public class MainActivity extends Activity {
     private class JokeTask extends AsyncTask<Void, Void, String> {
         @Override
         protected String doInBackground(Void... params) {
-            String jsonTxt = template.getForObject(URL, String.class);
+            String jsonTxt = template.getForObject(url, String.class);
             Log.d(TAG, jsonTxt);
             IcndbJoke joke = new Gson().fromJson(jsonTxt, IcndbJoke.class);
             return joke.getJoke();

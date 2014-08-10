@@ -3,7 +3,7 @@ apply plugin: 'crashlytics'
 apply plugin: 'checkstyle'
 
 android {
-    compileSdkVersion 20
+    compileSdkVersion 19
     buildToolsVersion "20.0.0"
 
     packagingOptions {
@@ -20,7 +20,7 @@ android {
     defaultConfig {
         applicationId "org.acme.demo.demoicnndbclient"
         minSdkVersion 19
-        targetSdkVersion 20
+        targetSdkVersion 19
         versionCode 1
         versionName "1.0"
     }

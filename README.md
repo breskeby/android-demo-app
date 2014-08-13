@@ -7,10 +7,42 @@ This application is based on https://github.com/kousen/ICNDB. but will continue 
 
 to demo all kinds of feature of the new gradle based android build system. 
 
-## DEMO
 ### PREPARATION
 
 * clean wrapper directories
 * clean local repositories
 
-1. commandline: ./gradlew projects
+### DEMO
+
+#### Command Line 
+1. **./gradlew projects**
+
+    
+	:projects
+    
+	
+    
+	------------------------------------------------------------
+    
+	Root project
+    
+	------------------------------------------------------------
+    
+	
+    
+	Root project 'android-demo-app'
+    
+	\--- Project ':app'
+
+2. **./gradlew :app:tasks**
+	* Build tasks
+	* Install tasks
+	* Verification tasks
+	* __TODO__ androidDependencies?
+	
+3. **./gradlew assemble**
+	* runs multiple tasks
+	* compiling, dexing, etc.
+	* show differnt apks in _app/build/outputs/apk/_
+	
+#### Android Studio

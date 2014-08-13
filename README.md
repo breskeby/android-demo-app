@@ -1,4 +1,4 @@
-android-demo-app
+android-demo-app ![build-status](https://travis-ci.org/breskeby/android-demo-app.svg)
 ================
 
 Android Application used for demoing Android Gradle Build and Android Studio
@@ -11,6 +11,8 @@ to demo all kinds of feature of the new gradle based android build system.
 
 * clean wrapper directories
 * clean local repositories
+* import demo project in Android Studio
+* start emulator
 
 ### DEMO
 

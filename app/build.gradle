@@ -1,6 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'crashlytics'
-apply plugin: 'checkstyle'
 
 android {
     compileSdkVersion 19
@@ -25,23 +23,6 @@ android {
         versionName "1.0"
     }
 
-    applicationVariants.all { variant ->
-        def checkstyleTask = task("${variant.name}Checkstyle", type: Checkstyle) {
-            source variant.javaCompile.getSource()
-            include '**/*.java'
-            exclude '**/gen/**'
-            exclude '**/R.java'
-            exclude '**/BuildConfig.java'
-
-            def configProps = ['proj.module.dir': projectDir.absolutePath]
-            configProperties configProps
-
-            // empty classpath
-            classpath = files()
-        }
-        check.dependsOn checkstyleTask
-
-    }
     buildTypes {
         release {
             runProguard false
@@ -51,19 +32,6 @@ android {
             applicationIdSuffix  = ".debug"
         }
     }
-
-
-    productFlavors {
-        free {
-        }
-
-        pro {
-        }
-    }
-}
-
-checkstyle{
-    configFile = rootProject.file("gradle/checkstyle/checkstyle.xml")
 }
 
 repositories {
@@ -71,12 +39,9 @@ repositories {
     maven {
         url 'http://repo.springsource.org/release'
     }
-    maven { url 'http://download.crashlytics.com/maven' }
 }
 
 dependencies {
     compile 'org.springframework.android:spring-android-rest-template:1.0.1.RELEASE'
     compile 'com.google.code.gson:gson:2.2.2'
-    //compile files('libs/android-support-v4.jar')
-    compile 'com.crashlytics.android:crashlytics:1.+'
 }

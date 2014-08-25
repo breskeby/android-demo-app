@@ -43,17 +43,15 @@ android {
 
     }
     buildTypes {
-        def REPORT_CRASHES = "REPORT_CRASHES"
-
         release {
             runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "boolean", REPORT_CRASHES,"true"
+            buildConfigField "boolean", "REPORT_CRASHES", "true"
         }
 
         debug {
             applicationIdSuffix  = ".debug"
-            buildConfigField "boolean", REPORT_CRASHES,"false"
+            buildConfigField "boolean", "REPORT_CRASHES", "false"
         }
     }
 

@@ -1,25 +1,11 @@
 /**
  * build setup including
  *  - flavours
- *  - checkstyle
- *  - crashlytics
  */
 
 apply plugin: 'com.android.application'
-apply plugin: 'crashlytics'
-apply plugin: 'checkstyle'
 
 android {
-    if(project.hasProperty("RELEASE_STORE_FILE")) {
-        signingConfigs {
-            icndb_release {
-                storeFile file(RELEASE_STORE_FILE)
-                storePassword RELEASE_STORE_PASSWORD
-                keyAlias RELEASE_KEY_ALIAS
-                keyPassword RELEASE_KEY_PASSWORD
-            }
-        }
-    }
     compileSdkVersion 19
     buildToolsVersion '20.0.0'
 
@@ -42,32 +28,11 @@ android {
         versionName "1.0"
     }
 
-    applicationVariants.all { variant ->
-        def checkstyleTask = task("${variant.name}Checkstyle", type: Checkstyle) {
-            source variant.javaCompile.getSource()
-            include '**/*.java'
-            exclude '**/gen/**'
-            exclude '**/R.java'
-            exclude '**/BuildConfig.java'
-
-            def configProps = ['proj.module.dir': projectDir.absolutePath]
-            configProperties configProps
-
-            // empty classpath
-            classpath = files()
-        }
-        check.dependsOn checkstyleTask
-
-    }
     buildTypes {
         release {
             runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "boolean", "REPORT_CRASHES", "true"
-
-            if(project.hasProperty("RELEASE_STORE_FILE")) {
-                signingConfig signingConfigs.icndb_release
-            }
         }
 
         debug {
@@ -88,18 +53,13 @@ android {
     }
 }
 
-checkstyle{
-    configFile = rootProject.file("gradle/checkstyle/checkstyle.xml")
-}
-
 repositories {
     mavenCentral()
     maven { url 'http://repo.springsource.org/release' }
-    maven { url 'http://download.crashlytics.com/maven' }
 }
 
 dependencies {
     compile 'org.springframework.android:spring-android-rest-template:1.0.1.RELEASE'
     compile 'com.google.code.gson:gson:2.2.2'
-    compile 'com.crashlytics.android:crashlytics:1.+'
+    //compile files('libs/android-support-v4.jar')
 }

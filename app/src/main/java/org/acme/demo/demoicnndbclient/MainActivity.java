@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 
 public class MainActivity extends Activity {
@@ -42,7 +41,9 @@ public class MainActivity extends Activity {
         });
 
         if (BuildConfig.REPORT_CRASHES) {
-            Crashlytics.start(this);
+            // enable crash reporting
+            Log.d(TAG, "initialize crash reporting");
+            //Crashlytics.start(this);
         }
     }
 

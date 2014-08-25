@@ -1,11 +1,9 @@
 /**
  * build setup including
  *  - flavours
- *  - checkstyle
  */
 
 apply plugin: 'com.android.application'
-apply plugin: 'checkstyle'
 
 android {
     compileSdkVersion 19
@@ -30,23 +28,6 @@ android {
         versionName "1.0"
     }
 
-    applicationVariants.all { variant ->
-        def checkstyleTask = task("${variant.name}Checkstyle", type: Checkstyle) {
-            source variant.javaCompile.getSource()
-            include '**/*.java'
-            exclude '**/gen/**'
-            exclude '**/R.java'
-            exclude '**/BuildConfig.java'
-
-            def configProps = ['proj.module.dir': projectDir.absolutePath]
-            configProperties configProps
-
-            // empty classpath
-            classpath = files()
-        }
-        check.dependsOn checkstyleTask
-
-    }
     buildTypes {
         release {
             runProguard false
@@ -60,20 +41,6 @@ android {
         }
     }
 
-    productFlavors {
-        free {
-        }
-
-        pro {
-        }
-    }
-    dexOptions {
-        incremental true
-    }
-}
-
-checkstyle{
-    configFile = rootProject.file("gradle/checkstyle/checkstyle.xml")
 }
 
 repositories {

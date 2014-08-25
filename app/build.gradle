@@ -4,7 +4,7 @@ apply plugin: 'checkstyle'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "20.0.0"
+    buildToolsVersion '20.0.0'
 
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
@@ -62,6 +62,9 @@ android {
         pro {
         }
     }
+    dexOptions {
+        incremental true
+    }
 }
 
 checkstyle{
@@ -70,9 +73,7 @@ checkstyle{
 
 repositories {
     mavenCentral()
-    maven {
-        url 'http://repo.springsource.org/release'
-    }
+    maven { url 'http://repo.springsource.org/release' }
     maven { url 'http://download.crashlytics.com/maven' }
 }
 

@@ -50,14 +50,11 @@ android {
             exclude '**/R.java'
             exclude '**/BuildConfig.java'
 
-            def configProps = ['proj.module.dir': projectDir.absolutePath]
-            configProperties configProps
-
+            configFile = rootProject.file("gradle/checkstyle/checkstyle.xml")
             // empty classpath
             classpath = files()
         }
         check.dependsOn checkstyleTask
-
     }
     buildTypes {
         release {
@@ -86,10 +83,6 @@ android {
     dexOptions {
         incremental true
     }
-}
-
-checkstyle{
-    configFile = rootProject.file("gradle/checkstyle/checkstyle.xml")
 }
 
 repositories {

@@ -40,14 +40,19 @@ to demo all kinds of feature of the new gradle based android build system.
 	* Build tasks
 	* Install tasks
 	* Verification tasks
-	* explain _up-to-date_
 	* __TODO__ androidDependencies?
 	
 3. **./gradlew assemble**
 	* runs multiple tasks
 	* compiling, dexing, etc.
 	* show different apks in _app/build/outputs/apk/_
-
+	* run again (show up-to-date)
+	
+4. **android studio
+	* run application
+	* show build file (dependencies)
+	* show sources
+	
 4. **./gradlew build**
 	* same as assemble
 	* runs tests

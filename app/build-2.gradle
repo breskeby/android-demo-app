@@ -30,7 +30,7 @@ android {
 
     buildTypes {
         release {
-            runProguard true
+            runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "boolean", "REPORT_CRASHES", "true"
         }

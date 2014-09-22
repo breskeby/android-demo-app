@@ -1,15 +1,11 @@
-/**
- * build setup including
- *  - flavours
- *  - checkstyle
- *  - crashlytics
- */
-
 apply plugin: 'com.android.application'
-apply plugin: 'crashlytics'
 apply plugin: 'checkstyle'
+apply plugin: 'crashlytics'
 
 android {
+    compileSdkVersion 19
+    buildToolsVersion '20.0.0'
+
     if(project.hasProperty("RELEASE_STORE_FILE")) {
         signingConfigs {
             icndb_release {
@@ -20,9 +16,6 @@ android {
             }
         }
     }
-    compileSdkVersion 19
-    buildToolsVersion '20.0.0'
-
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
         exclude 'META-INF/LICENSE'
@@ -42,23 +35,6 @@ android {
         versionName "1.0"
     }
 
-    applicationVariants.all { variant ->
-        def checkstyleTask = task("${variant.name}Checkstyle", type: Checkstyle) {
-            source variant.javaCompile.getSource()
-            include '**/*.java'
-            exclude '**/gen/**'
-            exclude '**/R.java'
-            exclude '**/BuildConfig.java'
-
-            def configProps = ['proj.module.dir': projectDir.absolutePath]
-            configProperties configProps
-
-            // empty classpath
-            classpath = files()
-        }
-        check.dependsOn checkstyleTask
-
-    }
     buildTypes {
         release {
             runProguard false
@@ -77,29 +53,34 @@ android {
     }
 
     productFlavors {
-        free {
-        }
-
-        pro {
-        }
+        free{}
+        pro{}
     }
-    dexOptions {
-        incremental true
-    }
-}
 
-checkstyle{
-    configFile = rootProject.file("gradle/checkstyle/checkstyle.xml")
+    applicationVariants.all{ variant ->
+        def checkstyleTask = task("${variant.name}Checkstyle", type:Checkstyle){
+            source variant.javaCompile.getSource()
+            include "**/*.java"
+            exclude "**/gen/**"
+            exclude "**/R.java"
+            exclude "**/BuildConfig.java"
+            configFile = rootProject.file("gradle/checkstyle/checkstyle.xml")
+            classpath = files()
+        }
+        check.dependsOn checkstyleTask
+    }
+
 }
 
 repositories {
     mavenCentral()
-    maven { url 'http://repo.springsource.org/release' }
     maven { url 'http://download.crashlytics.com/maven' }
+    maven { url 'http://repo.springsource.org/release' }
 }
 
 dependencies {
     compile 'org.springframework.android:spring-android-rest-template:1.0.1.RELEASE'
     compile 'com.google.code.gson:gson:2.2.2'
     compile 'com.crashlytics.android:crashlytics:1.+'
+    androidTestCompile 'com.jayway.android.robotium:robotium-solo:4.3.1'
 }

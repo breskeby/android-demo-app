@@ -15,14 +15,6 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name="org.acme.demo.demoicnndbclient.MainActivity"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <meta-data android:name="com.crashlytics.ApiKey" android:value="9e12f0f02232bb7a16d9422dc0f3cd1054559a04"/>
     </application>
 

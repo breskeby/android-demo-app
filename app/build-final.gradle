@@ -95,4 +95,5 @@ dependencies {
     compile 'org.springframework.android:spring-android-rest-template:1.0.1.RELEASE'
     compile 'com.google.code.gson:gson:2.2.2'
     compile 'com.crashlytics.android:crashlytics:1.+'
+    androidTestCompile 'com.jayway.android.robotium:robotium-solo:4.3.1'
 }

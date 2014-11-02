@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'checkstyle'
 apply plugin: 'crashlytics'
+apply plugin: 'jacoco'
 
 android {
     compileSdkVersion 19

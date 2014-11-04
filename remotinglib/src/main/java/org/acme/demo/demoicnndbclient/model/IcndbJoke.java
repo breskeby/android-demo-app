@@ -1,4 +1,4 @@
-package org.acme.demo.demoicnndbclient;
+package org.acme.demo.demoicnndbclient.model;
 
 @SuppressWarnings("unused")
 public class IcndbJoke {

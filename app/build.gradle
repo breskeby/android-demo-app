@@ -5,7 +5,7 @@ apply plugin: 'jacoco'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion '20.0.0'
+    buildToolsVersion '21.1.0'
 
     if(project.hasProperty("RELEASE_STORE_FILE")) {
         signingConfigs {
@@ -38,7 +38,7 @@ android {
 
     buildTypes {
         release {
-            runProguard false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "boolean", "REPORT_CRASHES", "true"
 
@@ -80,6 +80,7 @@ repositories {
 }
 
 dependencies {
+    compile project(":remotinglib")
     compile 'org.springframework.android:spring-android-rest-template:1.0.1.RELEASE'
     compile 'com.google.code.gson:gson:2.2.2'
     compile 'com.crashlytics.android:crashlytics:1.+'

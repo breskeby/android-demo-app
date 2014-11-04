@@ -1,5 +1,6 @@
 package org.acme.demo.demoicnndbclient;
 
+import org.acme.demo.demoicnndbclient.model.IcndbJoke;
 import org.springframework.web.client.RestTemplate;
 
 import android.R.color;
